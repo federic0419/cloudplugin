@@ -1,0 +1,18 @@
+R_DEF: Internal format may change without notice
+local
+drawable outline
+drawable save_icon
+id divider
+id divider2
+id dub_switch
+id header_tw
+id save_btn
+id secondary_switches
+id settingsLayout
+id sub_switch
+id unique_switch
+layout settings
+string dub_switch_text
+string header_tw
+string sub_switch_text
+string unique_switch_text
