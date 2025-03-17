@@ -52,11 +52,17 @@ jobs:
           cp **/build/*.cs3 $GITHUB_WORKSPACE/builds
           cp build/plugins.json $GITHUB_WORKSPACE/builds
 
-      - name: Commit and push changes
+      - name: Push builds
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          cd $GITHUB_WORKSPACE/builds
+          git init  # Se la cartella non è una repo Git, inizializzala
+          git remote add origin "https://${GH_PAT}@github.com/federic0419/cloudplugin.git" || true  # Evita errore se il remote esiste già
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
           git commit --amend -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
-          git push --force "https://${{ secrets.GH_PAT }}@github.com/federic0419/cloudplugin.git"
+          git push --force origin builds  # Assicurati che il push vada sulla branch corretta
+
 
