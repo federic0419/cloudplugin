@@ -1,0 +1,36 @@
+name: Partial Plugin Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      plugin:
+        description: "Nome del plugin da buildare"
+        required: true
+        type: string
+
+jobs:
+  build_plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Build Specific Plugin
+        run: |
+          echo "Building plugin: ${{ github.event.inputs.plugin }}"
+          ./build_script.sh ${{ github.event.inputs.plugin }}  # Modifica questo comando in base al tuo build system
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.event.inputs.plugin }}
+          path: build/${{ github.event.inputs.plugin }}
