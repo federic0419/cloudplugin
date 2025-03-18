@@ -18,3 +18,4 @@ include(
     "ToonItalia",
     "YouTube"
 )
+include(":iptv")
