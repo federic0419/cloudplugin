@@ -13,7 +13,7 @@ class TVPlugin : Plugin() {
         val sharedPref = activity?.getSharedPreferences("TV", Context.MODE_PRIVATE)
 
         // Registra la MainAPI con la tua playlist su GitHub
-        registerMainAPI(TV("it", sharedPref))
+        registerMainAPI(IPTV("it", sharedPref))
 
         val activity = context as AppCompatActivity
         openSettings = {

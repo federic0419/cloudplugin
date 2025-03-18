@@ -8,7 +8,7 @@ import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 
-class TV(
+class IPTV(
     override var lang: String,
     private val sharedPref: SharedPreferences?
 ) : MainAPI() {
