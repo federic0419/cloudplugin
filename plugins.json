@@ -1,0 +1,162 @@
+[
+    {
+        "iconUrl": "https://raw.githubusercontent.com/federic0419/cloudplugin/main/AltadefinizioneProvider/altadefinizione.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 9729,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "Adippe"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 3,
+        "internalName": "AltadefinizioneProvider",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/AltadefinizioneProvider.cs3",
+        "name": "AltadefinizioneProvider"
+    },
+    {
+        "iconUrl": "https://www.calciostreaming.cool/templates/calciostreaming1/images/icons/apple-touch-icon.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 9630,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "Gian-Fr",
+            "Adippe",
+            "doGior"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 3,
+        "internalName": "CalcioStreaming",
+        "description": "Live streams from the CalcioStreaming. Forked from the CalcioStreaming plugin in the ItalianProvider repo",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/CalcioStreaming.cs3",
+        "name": "CalcioStreaming"
+    },
+    {
+        "iconUrl": "https://cb01.uno/favicon-512x512.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 27366,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "doGior"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "Cartoon"
+        ],
+        "version": 9,
+        "internalName": "CB01",
+        "description": "Movies and Shows from CB01",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/CB01.cs3",
+        "name": "CB01"
+    },
+    {
+        "iconUrl": "https://eurostreaming.observer/wp-content/uploads/2017/08/logo_upt_observer.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 10804,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "Adippe"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 3,
+        "internalName": "EurostreamingProvider",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/EurostreamingProvider.cs3",
+        "name": "EurostreamingProvider"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/doGior/doGiorsHadEnough/refs/heads/master/TV/television.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 17691,
+        "status": 1,
+        "authors": [
+            "Gian-Fr",
+            "Adippe",
+            "doGior"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 2,
+        "internalName": "IPTV",
+        "description": "Live streams from the Free TV github repository. Forked from the Free-TV plugin in the ItalianProvider repo",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/IPTV.cs3",
+        "name": "IPTV"
+    },
+    {
+        "iconUrl": "https://onlineserietv.com/wp-content/uploads/2023/01/cropped-tv-1.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 19664,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "doGior"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "Cartoon",
+            "Anime",
+            "Documentary"
+        ],
+        "version": 2,
+        "internalName": "OnlineSerieTV",
+        "description": "Movies and Shows from OnlineSerieTV",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/OnlineSerieTV.cs3",
+        "name": "OnlineSerieTV"
+    },
+    {
+        "iconUrl": "https://streamingcommunity.lu/apple-touch-icon.png?v=2",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 37882,
+        "status": 1,
+        "language": "it",
+        "authors": [
+            "doGior"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Cartoon"
+        ],
+        "version": 13,
+        "internalName": "StreamingCommunity",
+        "description": "TV Shows and Movies from StreamingCommunity",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/StreamingCommunity.cs3",
+        "name": "StreamingCommunity"
+    },
+    {
+        "iconUrl": "https://www.youtube.com/s/desktop/711fd789/img/logos/favicon_144x144.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/federic0419/cloudplugin",
+        "fileSize": 41403,
+        "status": 1,
+        "authors": [
+            "doGior"
+        ],
+        "tvTypes": [
+            "Others"
+        ],
+        "version": 11,
+        "internalName": "YouTube",
+        "description": "Videos, playlists and channels from YouTube",
+        "url": "https://raw.githubusercontent.com/federic0419/cloudplugin/builds/YouTube.cs3",
+        "name": "YouTube"
+    }
+]
