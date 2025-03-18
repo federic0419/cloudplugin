@@ -1,5 +1,9 @@
 // use an integer for version numbers
 version = 2
+plugins {
+    kotlin("jvm") version "1.8.10"
+    id("com.lagradost.cloudstream3.plugin")
+}
 
 cloudstream {
     // All of these properties are optional, you can safely remove them
@@ -32,4 +36,7 @@ android {
 
 dependencies {
     implementation("com.google.android.material:material:1.12.0")
+}
+sourceSets {
+    main.kotlin.srcDirs += "src/main/kotlin"
 }
