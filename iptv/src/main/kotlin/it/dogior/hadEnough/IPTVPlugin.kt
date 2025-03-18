@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.CommonActivity.activity
 class TVPlugin : Plugin() {
     
     override fun load(context: Context) {
-        val sharedPref = activity?.getSharedPreferences("TV", Context.MODE_PRIVATE)
+        val sharedPref = activity?.getSharedPreferences("IPTV", Context.MODE_PRIVATE)
 
         // Registra la MainAPI con la tua playlist su GitHub
         registerMainAPI(IPTV("it", sharedPref))
