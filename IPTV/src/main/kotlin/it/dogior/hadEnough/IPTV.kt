@@ -10,7 +10,7 @@ import java.io.InputStream
 class FreeTVProvider : MainAPI() {
     override var lang = "it"
     override var mainUrl = "https://raw.githubusercontent.com/federic0419/mytv/main/channels.m3u"
-    override var name = "Free-TV"
+    override var name = "IT-TV"
     override val hasMainPage = true
     override val hasChromecastSupport = true
     override val supportedTypes = setOf(TvType.Live)
@@ -31,8 +31,7 @@ class FreeTVProvider : MainAPI() {
                     LoadData(streamUrl, channelName, posterUrl, nation).toJson(),
                     this@FreeTVProvider.name,
                     TvType.Live,
-                    posterUrl,
-                    lang = nation
+                    posterUrl
                 )
             }
             HomePageList(title, channels, isHorizontalImages = true)
