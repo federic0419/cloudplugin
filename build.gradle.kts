@@ -81,6 +81,18 @@ subprojects {
         implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
     }
 }
+tasks.register<Jar>("buildCs3") {
+    group = "build"
+    archiveBaseName.set("IPTV")
+    archiveClassifier.set("cs3")
+    destinationDirectory.set(file("$buildDir/libs"))
+
+    from(projectDir) {
+        include("src/**")
+        include("assets/**")
+        include("plugin.json")
+    }
+}
 
 task<Delete>("clean") {
     delete(rootProject.buildDir)
