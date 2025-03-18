@@ -14,7 +14,7 @@ include(
     "OnlineSerieTV",
     "StreamingCommunity",
     "TV",
-    "IPTV",
+    "iptv",
     "ToonItalia",
     "YouTube"
 )
