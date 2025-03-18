@@ -14,8 +14,7 @@ include(
     "OnlineSerieTV",
     "StreamingCommunity",
     "TV",
-    "iptv",
+    "IPTV",
     "ToonItalia",
     "YouTube"
 )
-include(":iptv")
