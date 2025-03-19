@@ -21,5 +21,5 @@ cloudstream {
         "Movie",
     )
 
-    iconUrl = "https://www.google.com/s2/favicons?domain=altadefinizione.tienda&sz=%size%"
+    iconUrl = "https://raw.githubusercontent.com/federic0419/cloudplugin/main/AltadefinizioneProvider/altadefinizione.png"
 }
