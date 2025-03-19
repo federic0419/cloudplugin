@@ -12,7 +12,7 @@ import org.jsoup.nodes.Element
 
 class AltadefinizioneProvider : MainAPI() {
     override var lang = "it"
-    override var mainUrl = "https://altadefinizione.exposed"
+    override var mainUrl = "https://altadefinizione.berlin/"
     override var name = "Altadefinizione"
     override val hasMainPage = true
     override val hasChromecastSupport = true
