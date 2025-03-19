@@ -21,5 +21,5 @@ cloudstream {
     )
 
 
-    iconUrl = "https://www.google.com/s2/favicons?domain=eurostreaming.social&sz=%size%"
+    iconUrl = "https://eurostreaming.observer/wp-content/uploads/2017/08/logo_upt_observer.png"
 }
