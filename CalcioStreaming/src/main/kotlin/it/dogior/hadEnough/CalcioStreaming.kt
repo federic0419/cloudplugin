@@ -23,18 +23,19 @@ class CalcioStreaming : MainAPI() {
 
         val matches = document.select("div.details") // Seleziona i match
         val shows = matches.map {
-            val name = it.select("a.game-name span").text() // Nome partita
-            val href = it.select("button a").attr("href") // Link streaming
-            val posterUrl = it.select("img.mascot").attr("src") // Logo evento
-
+            val name = it.select("div.details a.game-name span").text() // Nome partita
+            val hrefs = it.select("div.details button a").map { btn -> btn.attr("href") } // Tutti i link streaming
+            val posterUrl = it.select("div.logos img.mascot").attr("src") // Logo evento
+        
             LiveSearchResponse(
                 name,
-                fixUrl(href),
+                fixUrl(hrefs.firstOrNull() ?: ""), // Prende il primo link valido, se esiste
                 this@CalcioStreaming.name,
                 TvType.Live,
                 fixUrl(posterUrl)
             )
         }
+
 
         return HomePageResponse(listOf(HomePageList("Live Matches", shows)))
     }
