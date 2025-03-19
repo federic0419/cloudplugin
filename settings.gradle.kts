@@ -16,5 +16,7 @@ include(
     "TV",
     "IPTV",
     "ToonItalia",
-    "YouTube"
+    "YouTube",
+    "EurostreamingProvider",
+    "AltadefinizionePrivider"
 )
