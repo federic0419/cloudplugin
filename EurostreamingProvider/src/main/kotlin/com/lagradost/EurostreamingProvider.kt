@@ -6,97 +6,73 @@ import com.lagradost.cloudstream3.utils.loadExtractor
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.network.CloudflareKiller
-import okhttp3.FormBody
 import org.jsoup.nodes.Element
 
 class EurostreamingProvider : MainAPI() {
     override var lang = "it"
     override var mainUrl = "https://eurostreaming.observer"
-    override var name = "Eurostreaming"
+    override var name = "EuroStreaming"
     override val hasMainPage = true
     override val hasChromecastSupport = true
     private val interceptor = CloudflareKiller()
-    override val supportedTypes = setOf(
-        TvType.TvSeries
-    )
+    override val supportedTypes = setOf(TvType.TvSeries)
 
     override val mainPage = mainPageOf(
-        "$mainUrl/serie-tv-archive/page/" to "Ultime serie Tv",
-        "$mainUrl/animazione/page/" to "Ultime serie Animazione",
-        )
+        "$mainUrl/serie-tv-archive/" to "Ultime serie Tv",
+        "$mainUrl/animazione/" to "Ultime serie Animazione"
+    )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val url = request.data + page
-
+        val url = if (page == 1) request.data else "${request.data}page/$page/"
         val soup = app.get(url, interceptor = interceptor).document
-        val home = soup.select("div.post-thumb").mapNotNull {
+        val home = soup.select("ul.recent-posts li").mapNotNull {
             it.toSearchResult()
         }
         return newHomePageResponse(arrayListOf(HomePageList(request.name, home)), hasNext = true)
     }
 
     private fun Element.toSearchResult(): SearchResponse? {
-        val title = this.selectFirst("a")?.attr("title") ?: return null
-        val link = this.selectFirst("a")?.attr("href") ?: return null
-        val image = fixUrlNull(mainUrl + this.selectFirst("img")?.attr("src")?.trim())
+        val titleElement = this.selectFirst("h2 > a") ?: return null
+        val title = titleElement.text()
+        val link = titleElement.attr("href")
+        val image = this.selectFirst(".post-thumb img")?.attr("src") ?: return null
 
-        return newTvSeriesSearchResponse(title, link, TvType.TvSeries){
-            this.posterUrl = image
+        return newTvSeriesSearchResponse(title, link, TvType.TvSeries) {
+            this.posterUrl = fixUrl(image)
             this.posterHeaders = interceptor.getCookieHeaders(mainUrl).toMap()
         }
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
-        val body = FormBody.Builder()
-            .addEncoded("do", "search")
-            .addEncoded("subaction", "search")
-            .addEncoded("story", query)
-            .addEncoded("sortby", "news_read")
-            .build()
-
-        val doc = app.post(
-            "$mainUrl/index.php",
-            requestBody = body,
-            interceptor = interceptor
-            ).document
-
-        return doc.select("div.post-thumb").mapNotNull {
-            it?.toSearchResult()
+        val searchUrl = "$mainUrl/?s=$query"
+        val doc = app.get(searchUrl, interceptor = interceptor).document
+        return doc.select("ul.recent-posts li").mapNotNull {
+            it.toSearchResult()
         }
     }
 
     override suspend fun load(url: String): LoadResponse {
-        val page = app.get(url, interceptor = interceptor)
-        val document = page.document
-        val title = document.selectFirst("h2")!!.text().replace("^([1-9+]]$","")
-        val style = document.selectFirst("div.entry-cover")!!.attr("style")
-        val poster = fixUrl(Regex("(/upload.+\\))").find(style)!!.value.dropLast(1))
-        val episodeList = ArrayList<Episode>()
+        val document = app.get(url, interceptor = interceptor).document
+        val title = document.selectFirst("h1")?.text() ?: throw ErrorLoadingException("Nessun titolo trovato")
+        val poster = document.selectFirst(".post-thumb img")?.attr("src") ?: ""
+        val episodeList = mutableListOf<Episode>()
+
+        // Estrazione episodi
         document.select("div.tab-pane.fade").map { element ->
             val season = element.attr("id").filter { it.isDigit() }.toInt()
-            element.select("li").filter { it-> it.selectFirst("a")?.hasAttr("data-title")?:false }.map{episode ->
-                val data = episode.select("div.mirrors > a").map { it.attr("data-link") }.toJson()
-                val epnameData = episode.selectFirst("a")
-                val epTitle = epnameData!!.attr("data-title")
-                val epNum = epnameData.text().toInt()
-                episodeList.add(
-                    Episode(
-                        data,
-                        epTitle,
-                        season,
-                        epNum
-
-                    )
-                )
+            element.select("li").map { episode ->
+                val episodeLink = episode.select("div.mirrors > a").map { it.attr("data-link") }.toJson()
+                val epTitle = episode.selectFirst("a")?.attr("data-title") ?: "Episodio $season"
+                val epNum = episode.selectFirst("a")?.text()?.toIntOrNull() ?: 0
+                episodeList.add(Episode(episodeLink, epTitle, season, epNum))
             }
         }
+
         return newTvSeriesLoadResponse(title, url, TvType.TvSeries, episodeList) {
-            this.posterUrl = poster
+            this.posterUrl = fixUrl(poster)
             this.posterHeaders = interceptor.getCookieHeaders(mainUrl).toMap()
         }
-
     }
-
 
     override suspend fun loadLinks(
         data: String,
@@ -104,7 +80,7 @@ class EurostreamingProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        parseJson<List<String>>(data).map { videoUrl ->
+        parseJson<List<String>>(data).forEach { videoUrl ->
             loadExtractor(videoUrl, data, subtitleCallback, callback)
         }
         return true
