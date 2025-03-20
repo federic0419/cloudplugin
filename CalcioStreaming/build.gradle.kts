@@ -23,3 +23,9 @@ cloudstream {
 
     iconUrl = "https://www.calciostreaming.cool/templates/calciostreaming1/images/icons/apple-touch-icon.png"
 }
+plugins {
+    kotlin("plugin.serialization") version "1.9.0"
+}
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+}
